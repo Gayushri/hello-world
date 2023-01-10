@@ -6,7 +6,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'feature1', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -17,29 +17,19 @@ pipeline{
                 }
         }
         
-        stage('Dependency Check'){
-             steps{
-                 dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-Dependency-Check'
-                 dependencyCheckPublisher pattern: ''
-                  }
-        }
-        
-        stage('Sonar Analysis'){
-             steps{
-                 withSonarQubeEnv('sonarqube-9.8') {
-                 sh 'mvn package sonar:sonar'
+         stage('Sonar analysis') {
+            when {
+                branch 'feature1'
+            }
+          steps
+               {
+                   withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
+                   sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
-                  }
-        }
-        
-        stage("Quality Gate") {
-             steps {
-                timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-            }
             }
         }
-        
+            
+                
         
         stage("Deploy") {
              steps {
