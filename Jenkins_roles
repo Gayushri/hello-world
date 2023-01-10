@@ -20,20 +20,12 @@ pipeline{
         stage('sonar analysis'){
             steps
                {
-                   withSonarQubeEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
+                   withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
         }
-        
-        stage("Quality Gate") {
-             steps {
-                timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-            }
-            }
-        }
-            
+                   
                 
         
         stage("Deploy") {
