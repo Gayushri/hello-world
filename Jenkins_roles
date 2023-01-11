@@ -6,7 +6,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'feature1', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
