@@ -12,8 +12,8 @@
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>
     
-    <label for="dob"><b>Enter DOB</b></label>
-    <input type="text" placeholder="Enter DOB" name="dob" id="dob" required>
+    <label for="DOB"><b>Enter DOB</b></label>
+    <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>
 
     <label for="email"><b>Enter Email</b></label>
