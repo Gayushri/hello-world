@@ -75,7 +75,7 @@
   
 - name: Changing default port
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/server.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_master/roles/tomcat/templates/server.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
     owner: root
     group: root
@@ -84,7 +84,7 @@
     
 - name: Changing tomcat_users
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/tomcat-users.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_master/roles/tomcat/templates/tomcat-users.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/tomcat-users.xml
     owner: root
     group: root
@@ -93,7 +93,7 @@
     
 - name: Changing manager_users
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/manager-context.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_master/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/manager/META-INF/context.xml
     owner: root
     group: root
@@ -102,7 +102,7 @@
     
 - name: Changing host_manager_users
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/manager-context.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_master/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/host-manager/META-INF/context.xml
     owner: root
     group: root
