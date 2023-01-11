@@ -15,6 +15,10 @@
     <label for="DOB"><b>Enter DOB</b></label>
     <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>
+    
+    <label for="Gender"><b>Enter Gender</b></label>
+    <input type="text" placeholder="Gender" name="Gender" id="Gender" required>
+    <br>
 
     <label for="email"><b>Enter Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" id="email" required>
