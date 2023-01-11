@@ -12,20 +12,20 @@
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>
     
-    <label for="dob"><b>Enter DOB</b></label>
-    <input type="text" placeholder="Enter DOB" name="dob" id="dob" required>
+    <label for="DOB"><b>Enter DOB</b></label>
+    <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>
     
     <label for="email"><b>Enter Email</b></label>
-    <input type="text" placeholder="Enter Email address" name="email" id="email" required>
+    <input type="text" placeholder="Enter Email" name="email" id="email" required>
     <br>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
     <br>
     
-    <label for="gender"><b>gender</b></label>
-    <input type="text" placeholder="Enter Gender" name="gender" id="gender" required>
+    <label for="Gender"><b>gender</b></label>
+    <input type="text" placeholder="Enter Gender" name="Gender" id="Gender" required>
     <br>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
