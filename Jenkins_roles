@@ -18,10 +18,7 @@ pipeline{
         }
         
         stage('Check Dependency') {
-            when {
-                branch 'feature2' 
-            }
-          steps{
+            steps{
                  dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-Dependency-Check'
                  dependencyCheckPublisher pattern: ''
                   }
