@@ -48,7 +48,7 @@
   get_url:
     url: "{{ tomcat_url }}"
     dest: /opt/tomcat1
-  
+  when: tomcat_installed.stdout.find('is not installed') != -1
     
   
 - name: Extracting tomcat
@@ -113,7 +113,8 @@
   copy:
    src: /var/lib/jenkins/workspace/multi-branch-job_master/webapp/target/webapp.war
    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/
-   
+  notify:
+    - reload the daemon, enable and start the tomcat service 
    
 
                                                    
