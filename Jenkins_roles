@@ -6,7 +6,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'feature2', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -17,14 +17,14 @@ pipeline{
                 }
         }
         
-                
+
         stage('Check Dependency') {
             steps{
                  dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-Dependency-Check'
                  dependencyCheckPublisher pattern: ''
                   }
         }
-          
+
          stage('sonar analysis'){
             steps
                {
@@ -32,7 +32,7 @@ pipeline{
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
-        } 
+
         
         stage("Deploy") {
              steps {
