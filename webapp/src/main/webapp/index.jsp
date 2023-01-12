@@ -23,6 +23,9 @@
     <label for="Gender"><b>gender</b></label>
     <input type="text" placeholder="Enter Gender" name="Gender" id="Gender" required>
     <br>
+    <label for="Residential address"><b>gender</b></label>
+    <input type="text" placeholder="Enter Residential address" name="Gender" id="Gender" required>
+    <br>
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
     <hr>
