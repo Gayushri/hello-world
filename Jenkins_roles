@@ -6,7 +6,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git branch: 'feature2', url: 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'feature1', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -32,7 +32,6 @@ pipeline{
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
-
          }*/
 
 
@@ -40,6 +39,7 @@ pipeline{
              steps {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
             }
-        }
-    }
- }
+       }
+     }
+  }
+ 
