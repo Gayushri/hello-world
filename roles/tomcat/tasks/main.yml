@@ -48,7 +48,7 @@
   get_url:
     url: "{{ tomcat_url }}"
     dest: /opt/tomcat1
-  
+  when: tomcat_installed.stdout.find('is not installed') != -1  
     
   
 - name: Extracting tomcat
