@@ -13,17 +13,14 @@
     <label for="DOB"><b>Enter DOB</b></label>
     <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>     
-    <label for="email"><b>Enter Email Address</b></label>
+    <label for="email"><font color="red"><b>Enter Email Address</b></label>
     <input type="text" placeholder="Enter Email Address" name="email" id="email" required>
     <br>
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
     <br>
-    <label for="Gender"><b>gender</b></label>
+    <label for="Gender"><b>Gender</b></label>
     <input type="text" placeholder="Enter Gender" name="Gender" id="Gender" required>
-    <br>
-    <label for="Residential address"><b>gender</b></label>
-    <input type="text" placeholder="Enter Residential address" name="Gender" id="Gender" required>
     <br>
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
