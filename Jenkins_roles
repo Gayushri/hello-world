@@ -37,6 +37,6 @@ pipeline{
              steps {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
             }
-}
-}
-}
+       }
+    }
+ }
