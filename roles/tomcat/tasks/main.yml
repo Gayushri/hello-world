@@ -32,7 +32,7 @@
 - name: Creates directory
   file:
    path: /opt/tomcat1/
-    state: directory
+   state: directory
 
 - name: check if tomcat is installed
   shell: ps -ef | grep tomcat
