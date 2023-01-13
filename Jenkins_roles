@@ -6,7 +6,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git branch: 'feature2', url: 'https://github.com/Gayushri/hello-world.git'
+                git 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -32,7 +32,6 @@ pipeline{
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
-
          }*/
 
 
@@ -43,3 +42,4 @@ pipeline{
         }
     }
  }
+
