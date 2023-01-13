@@ -32,7 +32,7 @@ pipeline{
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
-        }
+        }*/
         stage("Deploy") {
              steps {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
