@@ -32,6 +32,11 @@ pipeline{
         }*/
 
          stage('sonar analysis'){
+            when {
+
+              branch "feat-*"
+
+                }
             steps
                {
                    withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
