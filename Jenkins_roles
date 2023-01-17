@@ -47,6 +47,9 @@ pipeline{
 
 
         stage("Deploy") {
+             when {
+                branch 'master'
+                }
              steps {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
             }
