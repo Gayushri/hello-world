@@ -23,7 +23,7 @@ pipeline{
                  dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-Dependency-Check'
                  dependencyCheckPublisher pattern: ''
                   }
-        }
+        }*/
 
          stage('sonar analysis'){
             steps
@@ -32,7 +32,7 @@ pipeline{
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
-         }*/
+         }
 
 
         stage("Deploy") {
