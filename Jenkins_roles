@@ -6,7 +6,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'feature2', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -18,13 +18,6 @@ pipeline{
         }
         
 
-        /*stage('Check Dependency') {
-            steps{
-                 dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-Dependency-Check'
-                 dependencyCheckPublisher pattern: ''
-                  }
-        }*/
-
          stage('sonar analysis'){
             steps
                {
@@ -33,13 +26,6 @@ pipeline{
                 }
             }
          }
-
-
-        stage("Deploy") {
-             steps {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
-            }
-        }
     }
  }
 
