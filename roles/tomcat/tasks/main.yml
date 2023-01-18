@@ -31,8 +31,8 @@
   
 - name: Creates directory
   file:
-    path: /opt/tomcat1/
-    state: directory
+   path: /opt/tomcat1/
+   state: directory
 
 - name: check if tomcat is installed
   shell: ps -ef | grep tomcat
@@ -48,8 +48,8 @@
   get_url:
     url: "{{ tomcat_url }}"
     dest: /opt/tomcat1
+
   when: tomcat_installed.stdout.find('is not installed') != -1
-    
   
 - name: Extracting tomcat
   unarchive:
@@ -75,7 +75,7 @@
   
 - name: Changing default port
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/server.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_feature1/roles/tomcat/templates/server.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
     owner: root
     group: root
@@ -84,7 +84,7 @@
     
 - name: Changing tomcat_users
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/tomcat-users.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_feature1/roles/tomcat/templates/tomcat-users.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/tomcat-users.xml
     owner: root
     group: root
@@ -93,7 +93,7 @@
     
 - name: Changing manager_users
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/manager-context.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_feature1/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/manager/META-INF/context.xml
     owner: root
     group: root
@@ -102,7 +102,7 @@
     
 - name: Changing host_manager_users
   template:
-    src: /var/lib/jenkins/workspace/lastjob/roles/tomcat/templates/manager-context.xml.j2
+    src: /var/lib/jenkins/workspace/multi-branch-job_feature1/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/host-manager/META-INF/context.xml
     owner: root
     group: root
@@ -111,9 +111,7 @@
 
 - name: Deploy war file to tomcat server
   copy:
-   src: /var/lib/jenkins/workspace/lastjob/webapp/target/webapp.war
+   src: /var/lib/jenkins/workspace/multi-branch-job_feature1/webapp/target/webapp.war
    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/
-   
-   
-
-                                                   
+  notify:
+    - reload the daemon, enable and start the tomcat service 
