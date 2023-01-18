@@ -2,11 +2,15 @@ pipeline{
   agent any
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
+        BRANCH_NAME = "$feature1"
             }
+            
     stages {        
         stage('Git Checkout'){
             steps{
+
                 git branch: 'feature2', url: 'https://github.com/Gayushri/hello-world.git'
+
             }
         }
         
@@ -16,16 +20,33 @@ pipeline{
                    sh "mvn clean package"
                 }
         }
+       
         
 
-         stage('sonar analysis'){
+
+        stage('sonar analysis'){
+
             steps
                {
                    withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
+
          }
+
+                
+        
+         stage('Deploy war'){
+            when {
+                branch '$BRANCH_NAME'
+                }         
+            steps {
+               sshagent(['deploy-user']) {
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
+                }
+            }
+        }
     }
  }
 
