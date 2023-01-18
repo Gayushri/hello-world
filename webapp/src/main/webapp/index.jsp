@@ -10,7 +10,7 @@
     <label for="mobile"><style color="red"><b>Enter mobile number</style color="red"></b></label>
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>    
-    <label for="DOB"><font color="Green"><b>Enter DOB</font color="Green"></b></label>
+    <label for="DOB"><style color="Green"><b>Enter DOB</style color="Green"></b></label>
     <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>
     <label for="email"><font color="red"><b>Enter Email Address</b></label>   
