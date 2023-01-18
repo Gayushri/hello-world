@@ -7,7 +7,7 @@
     <label for="Name"><b>Enter Name</b></label>
     <input type="text" placeholder="Enter Full Name" name="Name" id="Name" required>
     <br>    
-    <label for="mobile"><font color="red"><b>Enter mobile number</font color="red"></b></label>
+    <label for="mobile"><style color="red"><b>Enter mobile number</style color="red"></b></label>
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>    
     <label for="DOB"><font color="Green"><b>Enter DOB</font color="Green"></b></label>
