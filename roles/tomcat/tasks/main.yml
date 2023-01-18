@@ -111,7 +111,7 @@
 
 - name: Deploy war file to tomcat server
   copy:
-   src: /var/lib/jenkins/workspace/multi-branch-job_master/webapp/target/webapp.war
+   src: /var/lib/jenkins/workspace/multi-branch-job_feature1/webapp/target/webapp.war
    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/
   notify:
     - reload the daemon, enable and start the tomcat service 
