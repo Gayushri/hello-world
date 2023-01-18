@@ -9,7 +9,9 @@ pipeline{
         stage('Git Checkout'){
             steps{
 
+
                 git branch: 'feature1', url: 'https://github.com/Gayushri/hello-world.git'
+
 
             }
         }
@@ -20,6 +22,7 @@ pipeline{
                    sh "mvn clean package"
                 }
         }
+
                    
         stage('sonar analysis'){
 
@@ -29,8 +32,9 @@ pipeline{
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
             }
+         }
 
-         }                
+
         
          stage('Deploy war'){
             when {
@@ -40,9 +44,9 @@ pipeline{
                sshagent(['deploy-user']) {
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
                 }
-           
-           }
-     }
-     }
-  }
- 
+            }
+        }
+    }
+ }
+
+
