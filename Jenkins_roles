@@ -15,15 +15,28 @@ pipeline{
             }
         }
         
+                
         stage('Build code'){
             steps
                {
-                   sh "mvn clean package"
+                   sh "mvn clean package -DskipTests=true"
                 }
         }
 
-                   
-        stage('sonar analysis'){
+        
+        stage('Unit Test'){
+                steps{
+                    sh 'mvn test'
+                }
+            }
+        
+
+         stage('sonar analysis'){
+            when {
+
+              branch "feat-*"
+
+                }
 
             steps
                {
@@ -33,13 +46,25 @@ pipeline{
             }
          }
 
-
         
-         stage('Deploy war'){    
+         stage('Deploy war'){
+           when {
+                branch 'develop'
+                }
             steps {
                sshagent(['deploy-user']) {
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
                 }
+
+ 
+        
+        stage("Deploy_prod") {
+             when {
+                branch 'master'
+                }
+             steps {
+        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
+
             }
         }
     }

@@ -11,10 +11,11 @@
     <label for="mobile"><b>Enter mobile number</b></label>
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>    
-    <label for="DOB"><b>Enter DOB</b></label>
+    <label for="DOB"><font color="Green"><b>Enter DOB</font color="Green"></b></label>
     <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>
     <label for="email"><b>Enter Email Address</b></label>   
+    <label for="email"><font color="blue"><b>Enter Email Address</font color="blue"></b></label>   
     <label for="email"><b>Enter Email Address</b></label>
     <input type="text" placeholder="Enter Email Address" name="email" id="email" required>
     <br>
