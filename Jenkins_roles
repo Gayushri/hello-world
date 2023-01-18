@@ -2,6 +2,7 @@ pipeline{
   agent any
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
+        BRANCH_NAME = $feature1
             }
             
     stages {        
@@ -32,7 +33,7 @@ pipeline{
         
          stage('Deploy war'){
             when {
-                expression { GIT_BRANCH ==~ /(feature1)/ }
+                branch '$BRANCH_NAME'
                 }         
             steps {
                sshagent(['deploy-user']) {
