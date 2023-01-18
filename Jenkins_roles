@@ -32,7 +32,7 @@ pipeline{
         
          stage('Deploy war'){
             when {
-                branch "feature1"
+                expression { GIT_BRANCH ==~ /(feature1)/ }
                 }         
             steps {
                sshagent(['deploy-user']) {
