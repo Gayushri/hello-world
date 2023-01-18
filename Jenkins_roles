@@ -2,7 +2,7 @@ pipeline{
   agent any
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
-        BRANCH_NAME = $feature1
+        BRANCH_NAME = "$feature1"
             }
             
     stages {        
