@@ -2,12 +2,15 @@ pipeline{
   agent any
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
+        BRANCH_NAME = "$feature1"
             }
             
     stages {        
         stage('Git Checkout'){
             steps{
+
                 git branch: 'feature1', url: 'https://github.com/Gayushri/hello-world.git'
+
             }
         }
         
@@ -30,6 +33,9 @@ pipeline{
          }                
         
          stage('Deploy war'){
+            when {
+                branch '$BRANCH_NAME'
+                }         
             steps {
                sshagent(['deploy-user']) {
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
