@@ -31,6 +31,9 @@ pipeline{
                 
         
          stage('Deploy war'){
+            when {
+                branch 'feature1'
+                }         
             steps {
                sshagent(['deploy-user']) {
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
