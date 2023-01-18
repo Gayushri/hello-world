@@ -3,6 +3,7 @@ pipeline{
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
             }
+            
     stages {        
         stage('Git Checkout'){
             steps{
@@ -35,6 +36,6 @@ pipeline{
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
                 }
             }
-        
+        }
     }
 }
