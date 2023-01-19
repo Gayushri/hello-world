@@ -7,17 +7,16 @@
     <label for="Name"><b>Enter Name</b></label>
     <input type="text" placeholder="Enter Full Name" name="Name" id="Name" required>
     <br>    
-    <label for="mobile"><font color="red"><b>Enter mobile number</font color="red"></b></label>
+    <label for="mobile"><b>Enter mobile number</b></label>
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>    
-    <label for="DOB"><font color="Green"><b>Enter DOB</font color="Green"></b></label>
+    <label for="DOB"><b>Enter DOB</b></label>
     <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
     <br>
-    <label for="email"><font color="blue"><b>Enter Email Address<font color="blue"></b></label>   
-    <label for="email"><b>Enter Email Address</b></label>
+    <label for="email"><b>Enter Email Address</b></label>   
     <input type="text" placeholder="Enter Email Address" name="email" id="email" required>
     <br>
-    <label for="psw"><b><font color="yellow">Password</font color="yellow"></b></label>
+    <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
     <br>
     <label for="Gender"><b>Gender</b></label>
