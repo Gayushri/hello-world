@@ -1,3 +1,4 @@
+
 pipeline{
   agent any
   environment {
@@ -7,7 +8,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git branch: 'featurenew1', url: 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'developnew', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -79,4 +80,4 @@ pipeline{
     }
   }
 }
-       
+
