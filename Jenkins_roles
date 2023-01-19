@@ -2,16 +2,11 @@ pipeline{
   agent any
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
-              }
-            
+            }
     stages {        
         stage('Git Checkout'){
             steps{
-
-
-                git branch: 'develop', url: 'https://github.com/Gayushri/hello-world.git'
-
-
+                git 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -26,7 +21,6 @@ pipeline{
                    sh "mvn clean package -DskipTests=true"
                 }
         }
-
         
         stage('Unit Test'){
                 steps{
@@ -41,7 +35,6 @@ pipeline{
               branch "feat-*"
 
                 }
-
             steps
                {
                    withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
@@ -49,17 +42,16 @@ pipeline{
                 }
             }
          }
-
-        
-         stage('Deploy war'){
-           when {
+         
+      stage("Deploy_dev") {
+             when {
                 branch 'develop'
                 }
-            steps {
-               sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
-                }
-
+             steps {
+        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
+            }
+        }
+    
  
         
         stage("Deploy_prod") {
@@ -68,10 +60,7 @@ pipeline{
                 }
              steps {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
-
             }
         }
     }
  }
-
-
