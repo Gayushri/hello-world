@@ -10,7 +10,11 @@ pipeline{
             }
         }
         
-                
+        stage("Cleaning workspace") {
+               steps {
+                   sh "mvn clean"
+               }
+             }   
         stage('Build code'){
             steps
                {
