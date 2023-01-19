@@ -9,17 +9,18 @@ pipeline{
             steps{
                 git branch: 'feature1' 'https://github.com/Gayushri/hello-world.git'               
                 }
+             }
 
-        
-        stage("Cleaning workspace") {
+         stage("Cleaning workspace") {
                steps {
                    sh "mvn clean"
                }
              }   
+             
         stage('Build code'){
             steps
                {
-                   sh "mvn clean package -DskipTests=true"
+                   sh "mvn clean package"
                 }
         }
 
