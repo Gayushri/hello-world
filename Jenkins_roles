@@ -45,10 +45,11 @@ pipeline{
          
       stage("Deploy_dev") {
              when {
-                branch 'develop'
+                branch 'developnew'
                 }
              steps {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
+                sshagent(['deploy-user']) {
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
             }
         }
     
