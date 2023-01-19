@@ -3,6 +3,7 @@ pipeline{
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
             }
+            
     stages {        
         stage('Git Checkout'){
             steps{
@@ -13,8 +14,10 @@ pipeline{
         stage("Cleaning workspace") {
                steps {
                    sh "mvn clean"
-               }
-             }   
+                   }
+             }  
+
+             
         stage('Build code'){
             steps
                {
@@ -31,9 +34,7 @@ pipeline{
 
          stage('sonar analysis'){
             when {
-
               branch "feat-*"
-
                 }
             steps
                {
@@ -43,24 +44,39 @@ pipeline{
             }
          }
          
-      stage("Deploy_dev") {
-             when {
-                branch 'develop'
-                }
-             steps {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
-            }
+         stage("Deploy_test") {
+            when {
+              branch 'featurenew1'
+              }
+           steps {   
+             sshagent(['deploy-user']) {
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
+             }
+           } 
         }
     
- 
-        
+      stage("Deploy_dev") {
+         when {
+             branch 'developnew'
+              }
+           steps {   
+             sshagent(['deploy-user']) {
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
+             }
+           } 
+        }
+    
+         
         stage("Deploy_prod") {
              when {
-                branch 'master'
+                branch 'main'
                 }
              steps {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
+                sshagent(['deploy-user']) {
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
             }
         }
     }
- }
+  }
+}
+ 
