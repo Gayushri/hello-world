@@ -44,6 +44,7 @@ pipeline{
             }
          }
          
+
          stage("Deploy_test") {
             when {
               branch 'featurenew1'
@@ -55,6 +56,7 @@ pipeline{
            } 
         }
     
+
       stage("Deploy_dev") {
          when {
              branch 'developnew'
