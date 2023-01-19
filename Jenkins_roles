@@ -47,8 +47,8 @@ pipeline{
              when {
                 branch 'develop'
                 }
-             steps {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy.inv', playbook: 'play.yml'
+             sshagent(['deploy-user']) {
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@65.2.168.236:/opt/tomcat/webapps"
             }
         }
     
