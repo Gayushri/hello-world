@@ -7,15 +7,16 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'develop', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
         stage("Cleaning workspace") {
                steps {
                    sh "mvn clean"
-               }
-             }   
+                   }
+             }  
+
              
         stage('Build code'){
             steps
@@ -44,17 +45,17 @@ pipeline{
          }
          
       stage("Deploy_dev") {
-             when {
-                branch 'developnew'
-                }
-             steps {
-                sshagent(['deploy-user']) {
+         when {
+             branch 'developnew'
+              }
+           steps {   
+             sshagent(['deploy-user']) {
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
-            }
+             }
+           } 
         }
-    }
- 
-        
+    
+         
         stage("Deploy_prod") {
              when {
                 branch 'main'
@@ -67,3 +68,4 @@ pipeline{
     }
   }
 }
+ 
