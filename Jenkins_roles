@@ -3,6 +3,7 @@ pipeline{
   environment {
         PATH = "$PATH:/usr/share/apache-maven/bin"
             }
+            
     stages {        
         stage('Git Checkout'){
             steps{
@@ -15,6 +16,7 @@ pipeline{
                    sh "mvn clean"
                }
              }   
+             
         stage('Build code'){
             steps
                {
@@ -31,9 +33,7 @@ pipeline{
 
          stage('sonar analysis'){
             when {
-
               branch "feat-*"
-
                 }
             steps
                {
@@ -52,7 +52,7 @@ pipeline{
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
             }
         }
-    
+    }
  
         
         stage("Deploy_prod") {
