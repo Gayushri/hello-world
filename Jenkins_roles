@@ -7,11 +7,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-
-
                 git branch: 'feature2', url: 'https://github.com/Gayushri/hello-world.git'
-
-
             }
         }
         
