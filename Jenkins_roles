@@ -32,15 +32,14 @@ pipeline{
         
 
          stage('sonar analysis'){
-           
-            steps
+              steps
                {
                    withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=helloworldproject2'
                 }
-            }
+           }
     }
-               
+      
         
          stage('Deploy_war'){ 
               steps {
@@ -48,8 +47,8 @@ pipeline{
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
                 }
               }
-         }
+           }
        }  
-}
+   }
         
        
