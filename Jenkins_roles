@@ -8,9 +8,9 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git branch: 'developnew', url: 'git \'https://github.com/Gayushri/hello-world.git'
+                git branch: 'developnew', url: 'https://github.com/Gayushri/hello-world.git'
             }
-        
+        }
         
         stage("Cleaning workspace") {
                steps {
