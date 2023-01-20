@@ -53,7 +53,7 @@ pipeline{
               }
            steps {   
              sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@13.233.130.99:/opt/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
              }
            } 
         }
@@ -65,7 +65,7 @@ pipeline{
               }
            steps {   
              sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@13.233.130.99:/opt/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
              }
            } 
         }
@@ -77,7 +77,7 @@ pipeline{
                 }
              steps {
                 sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@13.233.130.99:/opt/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
             }
         }
     }
