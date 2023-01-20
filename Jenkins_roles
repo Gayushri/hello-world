@@ -8,7 +8,8 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git branch: 'developnew', url: 'https://github.com/Gayushri/hello-world.git'
+
+                git 'https://github.com/Gayushri/hello-world.git'
             }
         }
         
@@ -45,6 +46,7 @@ pipeline{
             }
          }
          
+
          stage("Deploy_test") {
             when {
               branch 'featurenew1'
@@ -56,6 +58,7 @@ pipeline{
            } 
         }
     
+
       stage("Deploy_dev") {
          when {
              branch 'developnew'
