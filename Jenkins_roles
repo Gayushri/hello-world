@@ -8,7 +8,6 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-
                 git branch: 'main', url: 'https://github.com/Gayushri/hello-world.git' 
             }
         }
@@ -35,9 +34,6 @@ pipeline{
         
 
          stage('sonar analysis'){
-            when {
-              branch "feat-*"
-                }
             steps
                {
                    withEnv(['SONAR_TOKEN=efa96a7d9eb267052a3956a03926f4060af4a793']){
@@ -47,7 +43,7 @@ pipeline{
          }
          
 
-         stage("Deploy_test") {
+         /*stage("Deploy_test") {
             when {
               branch 'featurenew1'
               }
@@ -80,7 +76,7 @@ pipeline{
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
             }
         }
-    }
+    }*/
   }
 }
 
