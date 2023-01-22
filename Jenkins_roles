@@ -1,3 +1,4 @@
+
 pipeline{
   agent any
   environment {
@@ -7,7 +8,7 @@ pipeline{
     stages {        
         stage('Git Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/Gayushri/hello-world.git'
+                git branch: 'main', url: 'https://github.com/Gayushri/hello-world.git' 
             }
         }
         
@@ -51,7 +52,7 @@ pipeline{
               }
            steps {   
              sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
              }
            } 
         }
@@ -63,7 +64,7 @@ pipeline{
               }
            steps {   
              sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
              }
            } 
         }
@@ -75,10 +76,10 @@ pipeline{
                 }
              steps {
                 sshagent(['deploy-user']) {
-                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@43.205.214.143:/opt/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
             }
         }
     }
   }
 }
- 
+
