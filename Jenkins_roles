@@ -46,7 +46,7 @@ pipeline{
          }
          
 
-         stage("Deploy_test") {
+         /*stage("Deploy_test") {
             when {
               branch 'featurenew1'
               }
@@ -79,7 +79,7 @@ pipeline{
                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@35.154.155.17:/opt/tomcat/webapps"
             }
         }
-    }
+    }*/
   }
 }
 
