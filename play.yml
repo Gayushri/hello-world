@@ -1,7 +1,7 @@
 ---
 - name: Install and configure tomcat server
   hosts: webserver
-  remote_user: ansi1
+  remote_user: ubuntu
   gather_facts: no
   become: yes
   roles:
