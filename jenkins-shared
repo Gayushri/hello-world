@@ -13,16 +13,16 @@ pipeline {
             }
         }
          
-          /*stage ('Build') {
+         /* stage ('Build') {
               steps {
                   script {
                       build.cleanPackage()
                   }
                 
               }
-          }  */ 
+          }  
            
-            stage("sonar analysis") {
+           stage("sonar analysis") {
              steps {
               withSonarQubeEnv('sonarqube') {
                   script {
@@ -33,12 +33,21 @@ pipeline {
             }
         } 
           
-           stage("Quality Gate") {
-            steps {
-              script {
+          
+            stage("Quality Gate") {
+              steps {
+                script {
                   quality.quality_gate()
               }
           }
-        }
+        } */
+        
+             stage ('Upload artifacts') {
+               steps {
+                  script {
+                      artifact.push()
+                }
+            }
+        }    
     }
-}  
+} 
