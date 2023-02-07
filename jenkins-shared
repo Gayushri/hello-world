@@ -1,0 +1,44 @@
+@Library('MyShared-Library') _
+
+pipeline {
+    agent any
+     environment {
+        PATH = "$PATH:/usr/share/apache-maven-3.6.0/bin"
+     }
+     
+      stages {
+          stage ('Git checkout') {
+            steps {
+                git url: 'https://github.com/Gayushri/hello-world.git'
+            }
+        }
+         
+          /*stage ('Build') {
+              steps {
+                  script {
+                      build.cleanPackage()
+                  }
+                
+              }
+          }  */ 
+           
+            stage("sonar analysis") {
+             steps {
+              withSonarQubeEnv('sonarqube') {
+                  script {
+                      sonar.sonar()
+                  }
+                
+              }
+            }
+        } 
+          
+           stage("Quality Gate") {
+            steps {
+              script {
+                  quality.quality_gate()
+              }
+          }
+        }
+    }
+}  
