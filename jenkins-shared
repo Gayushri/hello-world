@@ -13,7 +13,7 @@ pipeline {
             }
         }
          
-         /* stage ('Build') {
+          stage ('Build') {
               steps {
                   script {
                       build.cleanPackage()
@@ -40,7 +40,7 @@ pipeline {
                   quality.quality_gate()
               }
           }
-        } */
+        } 
         
              stage ('Upload artifacts') {
                steps {
@@ -49,5 +49,13 @@ pipeline {
                 }
             }
         }    
+            
+             stage ('Deploy') {
+              steps {
+                  script {
+                     deploy.war ()
+                   }
+                }
+            }
+        }  
     }
-} 
