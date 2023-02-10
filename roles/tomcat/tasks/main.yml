@@ -61,25 +61,17 @@
 #  file:
 #   path: /opt/tomcat1
 #   owner: root
-#    group: root
-#    mode: u+rwx,g+rx,o=rx
-#    recurse: yes
-#    state: directory
+#   group: root
+#   mode: u+rwx,g+rx,o=rx
+#   recurse: yes
+#   state: directory
 
 - name: Extracting tomcat
   unarchive:
     src: "/opt/tomcat1/apache-tomcat-{{tomcat_version}}.tar.gz"
     dest: "/opt/tomcat1"
     remote_src: yes
-
-    #- name: unzip tomcat
-    #shell:
-    #sh "tar -xzvf opt/tomcat1/apache-tomcat-{{tomcat_version}}.tar.gz.asc"
-
-    #remote_src: yes
-
-
-    #when: tomcat_installed.rc == 0
+  #when: tomcat_installed.rc == 0
 
 - name: copy the tomcat service file
   template:
