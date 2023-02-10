@@ -84,14 +84,14 @@
     name: 'tomcat.service'
     state: 'started'
   
-- name: Changing default port
-  template:
-    src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/server.xml.j2
-    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
-    owner: root
-    group: root
-    mode: 777
-    backup: yes
+#- name: Changing default port
+#  template:
+#    src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/server.xml.j2
+#    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
+#    owner: root
+#    group: root
+#    mode: 777
+#    backup: yes
     
 - name: Changing tomcat_users
   template:
