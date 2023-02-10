@@ -53,7 +53,7 @@
     dest: /opt/tomcat1
     
  - name: Change ownership of tomcat directory
-  file:
+   file:
       path: /opt/tomcat1
       owner: root
       group: root
