@@ -156,6 +156,6 @@ resource "null_resource" "run_ansible" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' --private-key=ansible.pem -e 'pub_key=ansible_rsa.pub' play.yml  --extra-vars ip='${aws_instance.server1.public_ip}'"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' play.yml"
   }
 }
