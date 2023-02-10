@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  remote_user: ansi1
+  remote_user: {{ ip }}
   gather_facts: no  
   become: yes
   roles:
