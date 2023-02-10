@@ -4,19 +4,19 @@
 - name: update apt repo and cache
   apt:
     update_cache: yes
-    cache_valid_time: 3600    
+    cache_valid_time: 3600
   async: 1000
   poll: 0
-  register: result1  
-    
+  register: result1
+
 - name: install openjdk
   package:
     name: "{{ java_package }}"
     state: present
   async: 1000
   poll: 0
-  register: result2     
- 
+  register: result2
+
 - name: Checking the Job Status
   async_status:
     jid: "{{ loop_item.ansible_job_id }}"
@@ -27,37 +27,60 @@
     loop_var: loop_item
   register: async_results
   until: async_results.finished
-  retries: 30   
-  
+  retries: 30
+
 - name: Creates directory
   file:
    path: /opt/tomcat1/
    state: directory
+   owner: root
+   group: root
+   mode: 777
 
-- name: check if tomcat is installed
-  shell: ps -ef | grep tomcat
-  register: tomcat_installed
-  check_mode: false
-  changed_when: false
-- name: print
-  debug:
-    msg: tomcat is installed
-  when: tomcat_installed.rc == 0
-  
+   #- name: check if tomcat is installed
+   #shell: ps -ef | grep tomcat
+   #register: tomcat_installed
+   #check_mode: false
+   #changed_when: false
+   #- name: print
+   #debug:
+   # msg: tomcat is installed
+   #when: tomcat_installed.rc == 0
+
 - name: Download tomcat if not installed
   get_url:
     url: "{{ tomcat_url }}"
     dest: /opt/tomcat1
+    owner: root
+    group: root
+    mode: 777
 
-  when: tomcat_installed.stdout.find('is not installed') != -1
-  
+    #when: tomcat_installed.stdout.find('is not installed') != -1
+
+- name: Change ownership of tomcat directory
+  file:
+     path: /opt/tomcat1
+     owner: root
+     group: root
+     mode: "u+rwx,g+rx,o=rx"
+     recurse: yes
+     state: directory
+
 - name: Extracting tomcat
   unarchive:
-    src: /opt/tomcat1/apache-tomcat-{{tomcat_version}}.tar.gz
-    dest: /opt/tomcat1
+    src: "/opt/tomcat1/apache-tomcat-{{tomcat_version}}.tar.gz"
+    dest: "/opt/tomcat1"
     remote_src: yes
-  when: tomcat_installed.rc == 0 
-    
+
+    #- name: unzip tomcat
+    #shell:
+    #sh "tar -xzvf opt/tomcat1/apache-tomcat-{{tomcat_version}}.tar.gz.asc"
+
+    #remote_src: yes
+
+
+    #when: tomcat_installed.rc == 0
+
 - name: copy the tomcat service file
   template:
     src: 'tomcat.service.j2'
@@ -65,53 +88,54 @@
     owner: root
     group: root
   notify:
-    - reload the daemon, enable and start the tomcat service 
+    - reload the daemon, enable and start the tomcat service
 - name: Force all notified handlers to run at this point, not waiting for normal sync points
   meta: flush_handlers
 - name: ensure tomcat service is running
   systemd:
     name: 'tomcat.service'
     state: 'started'
-  
-- name: Changing default port
-  template:
-    src: /var/lib/jenkins/workspace/dynamic/roles/tomcat/templates/server.xml.j2
-    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
-    owner: root
-    group: root
-    mode: 777
-    backup: yes
-    
+
+ #- name: Changing default port
+ # template:
+ #  src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/server.xml.j2
+ #  dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
+ #  owner: root
+ #  group: root
+ #  mode: 777
+ #  backup: yes
+
 - name: Changing tomcat_users
   template:
-    src: /var/lib/jenkins/workspace/dynamic/roles/tomcat/templates/tomcat-users.xml.j2
+    src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/tomcat-users.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/tomcat-users.xml
     owner: root
     group: root
   notify:
     - reload the daemon, enable and start the tomcat service
-    
+
 - name: Changing manager_users
   template:
-    src: /var/lib/jenkins/workspace/dynamic/roles/tomcat/templates/manager-context.xml.j2
+    src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/manager/META-INF/context.xml
     owner: root
     group: root
   notify:
-    - reload the daemon, enable and start the tomcat service  
-    
+    - reload the daemon, enable and start the tomcat service
+
 - name: Changing host_manager_users
   template:
-    src: /var/lib/jenkins/workspace/dynamic/roles/tomcat/templates/manager-context.xml.j2
+    src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/host-manager/META-INF/context.xml
     owner: root
     group: root
   notify:
-    - reload the daemon, enable and start the tomcat service 
+    - reload the daemon, enable and start the tomcat service
 
 - name: Deploy war file to tomcat server
   copy:
-   src: /var/lib/jenkins/workspace/dynamic/webapp/target/webapp.war
+   src: /var/lib/jenkins/workspace/dynamic-job/webapp/target/webapp.war
    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/
   notify:
-    - reload the daemon, enable and start the tomcat service 
+    - reload the daemon, enable and start the tomcat service
+
