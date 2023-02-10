@@ -120,6 +120,7 @@ resource "aws_instance" "server1" {
     Name = "server1"
   }
 
+
   connection {
     host        = aws_instance.server1.public_ip
     type        = "ssh"
@@ -130,11 +131,22 @@ resource "aws_instance" "server1" {
 
   provisioner "local-exec" {
     command = "echo ${self.public_ip} > /etc/ansible/hosts"
-  }
-
+}
 }
 
+resource "null_resource" "previous" {}
+
+resource "time_sleep" "wait_2_minutes" {
+  depends_on = [null_resource.previous]
+
+  create_duration = "2m"
+}
+
+
+
 resource "null_resource" "run_ansible" {
+
+  depends_on = [time_sleep.wait_2_minutes]
   connection {
     host        = aws_instance.server1.public_ip
     type        = "ssh"
