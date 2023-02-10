@@ -56,14 +56,15 @@
     mode: 777
 
     #when: tomcat_installed.stdout.find('is not installed') != -1
-- name: Change ownership of tomcat directory
-  file:
-    path: /opt/tomcat1
-    owner: root
-    group: root
-    mode: u+rwx,g+rx,o=rx
-    recurse: yes
-    state: directory
+    
+#- name: Change ownership of tomcat directory
+#  file:
+#   path: /opt/tomcat1
+#   owner: root
+#    group: root
+#    mode: u+rwx,g+rx,o=rx
+#    recurse: yes
+#    state: directory
 
 - name: Extracting tomcat
   unarchive:
