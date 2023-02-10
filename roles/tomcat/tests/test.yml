@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  remote_user: {{ ip }}
+  remote_user: ubuntu
   gather_facts: no  
   become: yes
   roles:
