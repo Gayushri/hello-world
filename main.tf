@@ -170,6 +170,6 @@ resource "null_resource" "run_ansible" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' --private-key=ansible.pem -e 'pub_key=id_rsa.pub' play.yml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' ansible_ssh_private_key_file=/var/lib/jenkins/workspace/dynamic-job/ansible.pem>> /etc/ansible/hosts play.yml"
   }
 }
