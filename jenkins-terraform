@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Gayushri/terraform.git'
+                git branch: 'dynamic', url: 'https://github.com/Gayushri/hello-world.git'
             }
         }
     
@@ -13,6 +13,7 @@ pipeline {
                 sh ("terraform init") 
             }
         }
+        
         stage ("plan") {
             steps {
                 sh ('terraform plan') 
@@ -21,13 +22,14 @@ pipeline {
 
         stage (" Action") {
             steps {
-            sh ('terraform apply --auto-approve') 
+            sh ('terraform apply --auto-approve')
+            sleep(16)
            }
         }
+        
          stage (" Deploy") {
             steps {
-        ansiblePlaybook credentialsId: 'Ansible-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'public_ip.txt', playbook: 'play.yml'
+        ansiblePlaybook credentialsId: 'Ansible-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: 'play.yml'
         }
       }
     }
-}
