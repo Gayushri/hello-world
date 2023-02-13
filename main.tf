@@ -92,8 +92,8 @@ resource "aws_security_group" "allow_tls" {
 
   ingress {
     description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -159,6 +159,6 @@ resource "null_resource" "run_ansible" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' ansible_ssh_private_key_file=/var/lib/jenkins/workspace/dynamic-job/ansible.pem>> /etc/ansible/hosts play.yml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' play.yml"
   }
 }
