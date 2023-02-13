@@ -134,7 +134,7 @@ resource "aws_instance" "server1" {
     #"./${self.public_ip} >> ansible_ssh_private_key_file=/var/lib/jenkins/workspace/dynamic-job/ansible.pem"
     command = <<EOT
       "echo ${self.public_ip} > /etc/ansible/hosts"
-      "./${self.public_ip} >> ansible_ssh_private_key_file=/var/lib/jenkins/workspace/dynamic-job/ansible.pem"
+      "echo ${self.public_ip} ansible_ssh_private_key_file=/var/lib/jenkins/workspace/dynamic-job/ansible.pem >> /etc/ansible/hosts"
     EOT
     
 }
