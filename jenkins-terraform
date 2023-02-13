@@ -23,7 +23,7 @@ pipeline {
         stage (" Action") {
             steps {
             sh ('terraform apply --auto-approve')
-            sleep(16)
+            sleep time: 30, unit: 'SECONDS'
            }
         }
         
