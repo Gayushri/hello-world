@@ -131,6 +131,7 @@ resource "aws_instance" "server1" {
 
   provisioner "local-exec" {
     command = "echo ${self.public_ip} > /etc/ansible/hosts"
+    interpreter = ["/bin/bash", "-c"]
    
     #command = <<EOT
       #echo ${self.public_ip} > /etc/ansible/hosts
@@ -140,6 +141,7 @@ resource "aws_instance" "server1" {
 }
   provisioner "local-exec" {
     command = "echo ${self.public_ip} ansible_ssh_private_key_file=/var/lib/jenkins/workspace/dynamic-job/ansible.pem >> /etc/ansible/hosts"
+    interpreter = ["/bin/bash", "-c"]
 }
 
   
