@@ -144,27 +144,6 @@ resource "aws_instance" "server1" {
    
 }
 
-resource "null_resource" "previous" {}
-
-resource "time_sleep" "wait_2_minutes" {
-  depends_on = [null_resource.previous]
-
-  create_duration = "2m"
-}
-
-
-
-resource "null_resource" "run_ansible" {
-
-  depends_on = [time_sleep.wait_2_minutes]
-  connection {
-    host        = aws_instance.server1.public_ip
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("ansible.pem")
-
-  }
-
   provisioner "local-exec" {
     command = "ANSIBLE_HOST_KEY_CHECKING=False sudo ansible-playbook -u ubuntu -i '${aws_instance.server1.public_ip},' play.yml"
   }
