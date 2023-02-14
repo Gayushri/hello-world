@@ -34,8 +34,8 @@
   file:
    path: /opt/tomcat1/
    state: directory
-   owner: root
-   group: root
+   owner: ubuntu
+   group: ubuntu
    mode: '0777'
 
 #- name: check if tomcat is installed
@@ -74,8 +74,8 @@
   template:
     src: 'tomcat.service.j2'
     dest: /etc/systemd/system/tomcat.service
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
     mode: '0777'
   notify:
     - reload the daemon, enable and start the tomcat service 
@@ -90,8 +90,8 @@
 #  template:
 #    src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/server.xml.j2
 #    dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/server.xml
-#    owner: root
-#    group: root
+#    owner: ubuntu
+#    group: ubuntu
 #    mode: 777
 #    backup: yes
     
@@ -99,8 +99,9 @@
   template:
     src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/tomcat-users.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/conf/tomcat-users.xml
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
+    mode: '0777'
   notify:
     - reload the daemon, enable and start the tomcat service
     
@@ -108,8 +109,9 @@
   template:
     src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/manager/META-INF/context.xml
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
+    mode: '0777'
   notify:
     - reload the daemon, enable and start the tomcat service  
     
@@ -117,8 +119,9 @@
   template:
     src: /var/lib/jenkins/workspace/dynamic-job/roles/tomcat/templates/manager-context.xml.j2
     dest: /opt/tomcat1/apache-tomcat-{{tomcat_version}}/webapps/host-manager/META-INF/context.xml
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
+    mode: '0777'
   notify:
     - reload the daemon, enable and start the tomcat service 
 
