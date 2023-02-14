@@ -76,6 +76,7 @@
     dest: /etc/systemd/system/tomcat.service
     owner: root
     group: root
+    mode: '0777'
   notify:
     - reload the daemon, enable and start the tomcat service 
 - name: Force all notified handlers to run at this point, not waiting for normal sync points
