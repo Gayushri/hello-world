@@ -90,14 +90,7 @@ resource "aws_security_group" "allow_tls" {
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.web.id
   
-  ingress {
-   description = "HTTP Access"
-   from_port   = 8080
-   to_port     = 8080
-   protocol    = "tcp"
-   cidr_blocks = ["0.0.0.0/0"]
- }
-
+  
   ingress {
     description = "TLS from VPC"
     from_port   = 22
