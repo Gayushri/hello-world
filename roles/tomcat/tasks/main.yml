@@ -36,7 +36,7 @@
    state: directory
    owner: root
    group: root
-   mode: 777
+   mode: '0777'
 
 #- name: check if tomcat is installed
 # shell: ps -ef | grep tomcat
@@ -53,15 +53,15 @@
     url: "{{ tomcat_url }}"
     dest: /opt/tomcat1
     
-- name: Change ownership of tomcat directory
-  file:
-    path: /opt/tomcat1
-    owner: root
-    group: root
-    mode: "u+rwx,g+rx,o=rx"
-    recurse: yes
-    state: directory
- #when: tomcat_installed.stdout.find('is not installed') != -1
+#- name: Change ownership of tomcat directory
+#  file:
+#    path: /opt/tomcat1
+#    owner: root
+#    group: root
+#    mode: "u+rwx,g+rx,o=rx"
+#    recurse: yes
+#    state: directory
+#when: tomcat_installed.stdout.find('is not installed') != -1
   
 - name: Extracting tomcat
   unarchive:
