@@ -3,4 +3,6 @@
 - name: reload the daemon, enable and start the tomcat service
   systemd:
     name: tomcat.service
-    state: started
+    enabled: true
+    daemon_reload: true
+    state: restarted
