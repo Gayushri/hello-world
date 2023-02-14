@@ -17,17 +17,17 @@
   poll: 0
   register: result2     
  
-- name: Checking the Job Status
-  async_status:
-    jid: "{{ loop_item.ansible_job_id }}"
-  loop:
-    - "{{ result1 }}"
-    - "{{ result2 }}"
-  loop_control:
-    loop_var: loop_item
-  register: async_results
-  until: async_results.finished
-  retries: 30   
+#- name: Checking the Job Status
+# async_status:
+#    jid: "{{ loop_item.ansible_job_id }}"
+#  loop:
+#    - "{{ result1 }}"
+#    - "{{ result2 }}"
+#  loop_control:
+#    loop_var: loop_item
+#  register: async_results
+#  until: async_results.finished
+#  retries: 30   
   
 - name: Creates directory
   file:
