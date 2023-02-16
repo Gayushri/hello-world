@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
     - name: firstcontainer
-      image: firstimage
+      image: javaapp
       ports:
         - containerport: 80
