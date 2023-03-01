@@ -5,7 +5,7 @@ metadata:
   labels:
     app: javaapp
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: javaapp
@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: docker-container
-        image: 929896200375.dkr.ecr.ap-south-1.amazonaws.com/mydocker:latest
+        image: myydocker143/pushes:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+
