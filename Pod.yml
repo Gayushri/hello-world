@@ -1,13 +1,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: firstpod
-  label:
-    env: prod
+  name: tompod
+  labels:
     app: javaapp
 spec:
   containers:
-    - name: firstcontainer
-      image: javaapp
+    - name: tomdeploy
+      image: myydocker143/pushes:latest
+      imagePullPolicy: IfNotPresent
       ports:
-        - containerport: 80
+        - containerPort: 8080
+          protocol: TCP
+
