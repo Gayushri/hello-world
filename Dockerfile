@@ -1,6 +1,6 @@
-FROM tomcat:8
+FROM tomcat:8-jdk8
 
-LABEL IMAGE=JAVAAPP
+LABEL maintainer="praveengayathri1009@gmail.com"
 
 COPY ./webapp/target/*.war /usr/local/tomcat/webapps/
 
